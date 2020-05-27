@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" @click="clickHandler">
 
     <div class="landing-wrapper">
 
@@ -22,7 +22,12 @@
 
 export default {
   name: "Home",
-  components: {}
+  components: {},
+  methods:{
+    clickHandler(){
+      this.$store.dispatch("openNav");
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

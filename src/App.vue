@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <TheHeader />
+    <TheHeader v-if="currentPath != '/' && currentPath != '/status'" />
     <TheNavigation />
     <router-view/>
-    <TheFooter />
+    <TheFooter v-if="currentPath != '/' && currentPath != '/status'" />
   </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
     TheHeader,
     TheFooter,
     TheNavigation
+  },
+  computed:{
+    currentPath(){
+      return this.$route.path
+    }
   }
 }
 </script>
