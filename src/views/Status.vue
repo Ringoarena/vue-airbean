@@ -3,7 +3,7 @@
     <div class="orderinfo">
       <p>
         Ordernummer
-        <span>{{this.ordernumber}}</span>
+        <span>{{'placeholder'}}</span>
       </p>
     </div>
     <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." />
@@ -18,11 +18,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      ordernumber: "#12345"
-    };
-  },
   methods: {
     nav() {
       console.log("Nav");
