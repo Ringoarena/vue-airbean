@@ -1,6 +1,6 @@
 <template>
   <nav :class="{openClass: menuIsOpen}">
-      <button @click="closeNav">&times;</button>
+      <div @click="closeNav" class="close"><img src="../assets/graphics/close.svg" alt=""></div>
       <p @click="navigate('Menu')">Meny!</p>
       <hr>
       <p @click="navigate('About')">Vårt kaffe!</p>
@@ -66,16 +66,23 @@ nav {
         border-color: gray;
     }
 
-    button {
+    .close {
         position: absolute;
-        left: 1rem;
-        top: 1rem;
-        font-size: 36px;
-        border-radius: 50%;
-        height: 3rem;
-        width: 3rem;
-        border: none;
+        left: 1.3rem;
+        top: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        clip-path: circle();
+        background-color: white;
+        img {
+            width: 1rem;
+        }
+        cursor: pointer;
     }
+
+
 }
 .openClass {
     width: 100%;
