@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
+    background-color: #f3e4e1;
     display: flex;
     flex-direction: column;
     align-items: center;
