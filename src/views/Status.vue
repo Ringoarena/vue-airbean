@@ -3,13 +3,13 @@
     <div class="orderinfo">
       <p>
         Ordernummer
-        <span>{{'placeholder'}}</span>
+        <span>{{this.order.orderNumber}}</span>
       </p>
     </div>
     <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." />
     <h2>Din beställning är på väg!</h2>
     <p class="eta">
-      {{eta()}}
+      {{this.order.deliveryETA}}
       <span>minuter</span>
     </p>
     <button v-on:click="nav()">Ok, cool!</button>
@@ -18,6 +18,30 @@
 
 <script>
 export default {
+  data() {
+    return {
+      order: {
+        orderNumber: "123123",
+        deliveryETA: this.eta(),
+        contents: [
+          {
+            quantity: 2,
+            id: 1,
+            title: "Bryggkaffe",
+            desc: "Bryggd på månadens bönor.",
+            price: 39
+          },
+          {
+            quantity: 6,
+            id: 2,
+            title: "Caffè Doppio",
+            desc: "Bryggd på månadens bönor.",
+            price: 49
+          }
+        ]
+      }
+    };
+  },
   methods: {
     nav() {
       console.log("Nav");
