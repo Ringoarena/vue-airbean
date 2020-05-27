@@ -9,10 +9,10 @@
     <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." />
     <h2>Din beställning är på väg!</h2>
     <p class="eta">
-      {{this.eta}}
+      {{eta()}}
       <span>minuter</span>
     </p>
-    <button>Ok, cool!</button>
+    <button v-on:click="nav()">Ok, cool!</button>
   </main>
 </template>
 
@@ -20,9 +20,16 @@
 export default {
   data() {
     return {
-      ordernumber: "#12345",
-      eta: 13
+      ordernumber: "#12345"
     };
+  },
+  methods: {
+    nav() {
+      console.log("Nav");
+    },
+    eta() {
+      return Math.floor(Math.random() * 60);
+    }
   }
 };
 </script>
@@ -38,6 +45,12 @@ main {
   padding: 2rem;
 }
 
+img,
+h2,
+button {
+  margin: 2rem;
+}
+
 h2 {
   font-weight: bold;
   font-family: "PT Serif", serif;
@@ -45,10 +58,11 @@ h2 {
 }
 
 .orderinfo {
+  margin: 1rem;
   p {
     font-family: "Work Sans", sans-serif;
     color: rgba(255, 255, 255, 0.7);
-    font-weight: 200;
+    font-weight: 400;
     span {
       font-weight: 600;
     }
@@ -64,12 +78,18 @@ h2 {
   }
 }
 
-button{
-    font-family: "PT Serif", serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    background-color: white;
-    padding: 0.7rem;
-    border: none;
+button {
+  font-family: "PT Serif", serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: white;
+  padding: 0.5rem;
+  border: none;
+  width: 9rem;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #aaa;
 }
 </style>
