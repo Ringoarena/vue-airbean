@@ -1,16 +1,24 @@
 <template>
   <nav :class="{openClass: menuIsOpen}">
       <button @click="closeNav">&times;</button>
-      <router-link :to="{name: 'Menu'}">Meny</router-link>
-      <router-link :to="{name: 'About'}">Vårt Kaffe</router-link>
-      <router-link :to="{name: 'Profile'}">Min profil</router-link>
-      <router-link :to="{name: 'Status'}">Orderstatus</router-link>
+      <p @click="navigate('Menu')">Meny!</p>
+      <hr>
+      <p @click="navigate('About')">Vårt kaffe!</p>
+      <hr>
+      <p @click="navigate('Profile')">Min profil!</p>
+      <hr>
+      <p @click="navigate('Status')">Orderstatus!</p>
+      <hr>
   </nav>
 </template>
 
 <script>
 export default {
     methods: {
+        navigate(destination) {
+            this.$store.dispatch("closeNav");
+            this.$router.push({name: destination});
+        },
         closeNav() {
             this.$store.dispatch("closeNav");
         }
@@ -31,30 +39,42 @@ nav {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(165, 165, 165);
+    background-color: black;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
-    a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 1rem;
-        display: block;
-        transition: 0.3s;
+    p {
+        color: white;
+        padding: 3rem;
+        font-size: 2rem;
+        width: 100%;
+        text-align: center;
+        transition: 1s;
     }
 
-    a:hover {
-        color: green;
+    p:hover {
+        cursor: pointer;
+        font-size: 3rem;
+    }
+
+    hr {
+        width: 3rem;
+        border-color: gray;
     }
 
     button {
         position: absolute;
-        top: 0;
-        right: 25px;
+        left: 1rem;
+        top: 1rem;
         font-size: 36px;
-        margin-left: 50px;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        border: none;
     }
 }
 .openClass {
