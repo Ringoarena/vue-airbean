@@ -30,7 +30,7 @@ export default {
   props: {},
   methods: {
     clickHandlerMenu() {
-      console.log("Hello menu");
+      this.$store.dispatch("openNav");
     },
     clickHandlerBag() {
       console.log("Hello bag");
