@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
+  background-color: #f3e4e1;
+}
 .background {
   height: 8em;
   background-image: url("../assets/graphics/graphics-header.svg");

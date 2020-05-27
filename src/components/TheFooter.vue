@@ -10,6 +10,7 @@ export default {};
 
 <style lang="scss" scoped>
 main {
+  background-color: #f3e4e1;
   //   display: flex;
   //   justify-content: flex-start;
   //   align-items: center;
