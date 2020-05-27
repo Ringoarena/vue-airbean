@@ -6,12 +6,12 @@
         <img src="../assets/graphics/navicon.svg" alt />
       </section>
 
-      <div class="bag" v-if="bagIsVisible">
+      <div v-if="getNumberOfItemsFromShoppingCart && bagIsVisible" class="bag">
         <section @click="clickHandlerBag" class="bagbtn">
           <img src="../assets/graphics/bag.svg" alt />
         </section>
-        <div class="displayNumberOfItems">
-          <p>7</p>
+        <div  class="displayNumberOfItems">
+          <p v-text="getNumberOfItemsFromShoppingCart"></p>
           <!-- <p :displayItems="displayItems">7</p> -->
         </div>
       </div>
@@ -23,10 +23,16 @@
 export default {
   data() {
     return {
-        bagIsVisible: true
+      bagIsVisible: true
     };
   },
-  computed: {},
+  computed: {
+    getNumberOfItemsFromShoppingCart() {
+      // if 
+      // TODO: Connect this with vuex state
+      return 2
+    }
+  },
   props: {},
   methods: {
     clickHandlerMenu() {
