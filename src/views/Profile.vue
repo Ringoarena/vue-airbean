@@ -9,6 +9,10 @@
       <h3>Orderhistorik</h3>
       <OrderHistory />
       <OrderHistory />
+      <p>
+        Totalt spenderat:
+        <span>1331</span> kr
+      </p>
     </div>
   </main>
 </template>
@@ -53,12 +57,16 @@ figure {
 
   p {
     font-family: "Work Sans", sans-serif;
+    span {
+      text-align: right;
+    }
   }
 }
 
 .orderHistory {
   background-color: #2f2926;
   padding: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 figure {

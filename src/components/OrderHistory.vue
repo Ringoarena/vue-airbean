@@ -19,8 +19,7 @@ p {
 }
 .history {
   transition: background-color 0.7s;
-  margin: 1.2rem;
-  max-width: 500px;
+    margin-bottom: 1.2rem;
   width: 70vw;
   display: grid;
   grid-template-areas:
