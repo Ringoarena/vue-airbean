@@ -14,6 +14,12 @@
 export default {
     props: ["user"],
 
+    computed:{
+        computedUser(){
+            //return this.$store.getters.user
+        }
+    },
+
     methods: {
         getUser(){
         },
