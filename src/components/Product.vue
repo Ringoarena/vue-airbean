@@ -2,21 +2,21 @@
 <article>
     <div @click="addToCart" class="add"><img src="../assets/graphics/add.svg" alt=""></div>
     <div class="text">
-        <p class="title">{{item.title}}</p>
-        <p class="description">{{item.description}}</p>
+        <p class="title">{{product.title}}</p>
+        <p class="description">{{product.description}}</p>
     </div>
-    <p class="price">{{item.price}} kr</p>
+    <p class="price">{{product.price}} kr</p>
 </article>
 </template>
 
 <script>
 export default {
     props: {
-        item: Object
+        product: Object
     },
     methods: {
         addToCart() {
-            this.$store.dispatch('addToCart', this.item);
+            this.$store.dispatch('addToCart', this.product);
         }
     }
 }

@@ -1,17 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as API from '@/api'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     menuIsOpen: false,
-    menuItems: [
+    products: [
       {id: 1, title: 'Cappucino', description: 'Coffee with foamed milk', price: '55'},
       {id: 2, title: 'Latte', description: 'Coffee with milk', price: '55'},
       {id: 3, title: 'Espresso', description: 'Coffee without milk', price: '55'}
     ],
-    cart: []
+    cart: [],
+    orderNumber: '#OAR003B',
+    user: null,
   },
   mutations: {
     openNav: (state) => {
@@ -20,11 +23,14 @@ export default new Vuex.Store({
     closeNav: (state) => {
       state.menuIsOpen = false;
     },
-    setMenuItems: (state, payload) => {
-      state.setMenuItems = payload;
+    setProducts: (state, payload) => {
+      state.products = payload;
     },
     addToCart: (state, payload) => {
       state.cart.push(payload);
+    },
+    setCurrentUser: (state, user) =>{
+      state.user = user;
     }
   },
   actions: {
@@ -37,10 +43,12 @@ export default new Vuex.Store({
     addToCart: (context, payload) => {
       context.commit('addToCart', payload);
     },
-    fetchProducts: (context) => {
-      //fetch prodructs
-      //context.commit('setMenuItems', products);
-      console.log(context);
+    async getProducts(context) {
+      const data = await API.fetchProducts();
+      context.commit('setProducts', data);
+    },
+    getCurrentUser: (context, user) =>{
+      context.commit('setCurrentUser', user);
     }
   },
   modules: {

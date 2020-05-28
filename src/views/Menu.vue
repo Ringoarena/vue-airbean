@@ -2,7 +2,7 @@
 <main>
     <h1>Meny</h1>
     <section>
-        <MenuItem :key="item.id" v-for="item in menuItems" :item="item" />
+        <Product :key="product.id" v-for="product in products" :product="product" />
     </section>
     
 </main>
@@ -10,20 +10,23 @@
 </template>
 
 <script>
-import MenuItem from '@/components/MenuItem.vue'
+import Product from '@/components/Product.vue'
 
 export default {
     components: {
-        MenuItem
+        Product
     },
     data() {
         return {
         }
     },
     computed: {
-        menuItems() {
-            return this.$store.state.menuItems;
+        products() {
+            return this.$store.state.products;
         }
+    },
+    mounted() {
+        this.$store.dispatch('getProducts');
     }
 }
 </script>

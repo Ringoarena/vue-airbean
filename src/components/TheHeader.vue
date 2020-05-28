@@ -1,7 +1,10 @@
 <template>
   <main>
-    <section class="background">
-      <!-- <img src="../assets/graphics/graphics-header.svg" alt /> -->
+    <section class="graphics">
+      <img src="../assets/graphics/graphics-header.svg" alt />
+    </section>
+
+    <nav class="nav-btns">
       <section @click="clickHandlerMenu" class="hamburgerbtn">
         <img src="../assets/graphics/navicon.svg" alt />
       </section>
@@ -10,12 +13,12 @@
         <section @click="clickHandlerBag" class="bagbtn">
           <img src="../assets/graphics/bag.svg" alt />
         </section>
-        <div  class="displayNumberOfItems">
+        <div class="displayNumberOfItems">
           <p v-text="getNumberOfItemsFromShoppingCart"></p>
           <!-- <p :displayItems="displayItems">7</p> -->
         </div>
       </div>
-    </section>
+    </nav>
   </main>
 </template>
 
@@ -28,9 +31,9 @@ export default {
   },
   computed: {
     getNumberOfItemsFromShoppingCart() {
-      // if 
+      // if
       // TODO: Connect this with vuex state
-      return 2
+      return 1;
     }
   },
   props: {},
@@ -48,49 +51,61 @@ export default {
 <style lang="scss" scoped>
 main {
   background-color: #f3e4e1;
-}
-.background {
-  height: 8em;
-  background-image: url("../assets/graphics/graphics-header.svg");
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: initial;
-}
-
-.hamburgerbtn,
-.bagbtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  clip-path: circle();
-  padding: 1em;
-  margin: 1em;
-  cursor: pointer;
-}
-
-.hamburgerbtn {
-  background: white;
-}
-
-.bagbtn {
-  background: black;
-}
-
-.bag {
   display: grid;
-}
+  grid-template-rows: 4em 1em;
+  padding-bottom: 2em;
 
-.displayNumberOfItems p {
-  background: red;
-  color: white;
-  clip-path: circle();
-  padding: 0.5em;
-  font-weight: 900;
-  position: absolute;
-  top: 1.4em;
-  right: 0.7em;
+  .graphics {
+    img {
+      width: 100%;
+    }
+  }
+
+  .nav-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .hamburgerbtn,
+    .bagbtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      clip-path: circle();
+      padding: 1em;
+      margin: 1em;
+      cursor: pointer;
+    }
+
+    .hamburgerbtn {
+      background: white;
+    }
+
+    .bag {
+      .bagbtn {
+        // position: relative;
+        // top: 0.5em;
+        background: black;
+        margin-top: 1.6em;
+        margin-right:2.6em;
+      }
+      .displayNumberOfItems {
+        background: red;
+        clip-path: circle();
+        padding: 0.3em;
+        position: relative;
+        bottom: 4.5em;
+        left: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+          color: white;
+          font-weight: 900;
+          font-size: 1em;
+        }
+      }
+    }
+  }
 }
 </style>
