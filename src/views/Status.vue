@@ -23,6 +23,8 @@ export default {
     return {
       order: {
         //Hämta från store
+        deliveryETA: this.eta(),
+        orderNumber: "#ABBA002"
       }
     };
   },
