@@ -21,24 +21,7 @@ export default {
   data() {
     return {
       order: {
-        orderNumber: "123123",
-        deliveryETA: this.eta(),
-        contents: [
-          {
-            quantity: 2,
-            id: 1,
-            title: "Bryggkaffe",
-            desc: "Bryggd på månadens bönor.",
-            price: 39
-          },
-          {
-            quantity: 6,
-            id: 2,
-            title: "Caffè Doppio",
-            desc: "Bryggd på månadens bönor.",
-            price: 49
-          }
-        ]
+        //Hämta från store
       }
     };
   },
