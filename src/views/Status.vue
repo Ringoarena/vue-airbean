@@ -6,13 +6,14 @@
         <span>{{this.order.orderNumber}}</span>
       </p>
     </div>
+    <!-- <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." /> -->
     <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." />
     <h2>Din beställning är på väg!</h2>
     <p class="eta">
       {{this.order.deliveryETA}}
       <span>minuter</span>
     </p>
-    <button v-on:click="nav()">Ok, cool!</button>
+    <button v-on:click="clickHandler">Ok, cool!</button>
   </main>
 </template>
 
@@ -21,30 +22,15 @@ export default {
   data() {
     return {
       order: {
-        orderNumber: "123123",
+        //Hämta från store
         deliveryETA: this.eta(),
-        contents: [
-          {
-            quantity: 2,
-            id: 1,
-            title: "Bryggkaffe",
-            desc: "Bryggd på månadens bönor.",
-            price: 39
-          },
-          {
-            quantity: 6,
-            id: 2,
-            title: "Caffè Doppio",
-            desc: "Bryggd på månadens bönor.",
-            price: 49
-          }
-        ]
+        orderNumber: "#ABBA002"
       }
     };
   },
   methods: {
-    nav() {
-      console.log("Nav");
+    clickHandler() {
+      this.$store.dispatch("openNav");
     },
     eta() {
       return Math.floor(Math.random() * 60);
