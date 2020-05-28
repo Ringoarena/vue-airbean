@@ -12,7 +12,7 @@
       {{this.order.deliveryETA}}
       <span>minuter</span>
     </p>
-    <button v-on:click="nav()">Ok, cool!</button>
+    <button v-on:click="clickHandler">Ok, cool!</button>
   </main>
 </template>
 
@@ -43,8 +43,8 @@ export default {
     };
   },
   methods: {
-    nav() {
-      console.log("Nav");
+    clickHandler() {
+      this.$store.dispatch("openNav");
     },
     eta() {
       return Math.floor(Math.random() * 60);
