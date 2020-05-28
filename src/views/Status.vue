@@ -6,6 +6,7 @@
         <span>{{this.order.orderNumber}}</span>
       </p>
     </div>
+    <!-- <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." /> -->
     <img src="@/assets/graphics/drone.svg" alt="En drönare med en kopp riktigt gott kaffe." />
     <h2>Din beställning är på väg!</h2>
     <p class="eta">
