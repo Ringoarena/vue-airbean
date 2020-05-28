@@ -17,15 +17,25 @@ export default new Vuex.Store({
     orderNumber: '#OAR003B',
     user: null,
   },
+
   getters: {
     getCartLength: (state) => {
       return state.cart.length
+    },
+    getCartTotalPrice: (state) => {
+      let total = 0;
+      state.cart.forEach(item => {
+        total += item.product.price * item.quantity;
+      });
+      return total;
     }
   },
+
   mutations: {
     openNav: (state) => {
       state.menuIsOpen = true;
     },
+
     closeNav: (state) => {
       state.menuIsOpen = false;
     },
@@ -35,20 +45,33 @@ export default new Vuex.Store({
     closeCart: (state) => {
       state.cartIsOpen = false;
     },
+
     setProducts: (state, payload) => {
       state.products = payload;
     },
+
     addToCart: (state, payload) => {
-      state.cart.push(payload);
+      let productInCart = state.cart.find(item => {
+        return item.product.id === payload.product.id;
+      });
+      if (productInCart) {
+        productInCart.quantity += payload.quantity;
+      } else {
+        state.cart.push(payload);
+      }
+      
     },
+
     setCurrentUser: (state, user) => {
       state.user = user;
     }
   },
+
   actions: {
     openNav: (context) => {
       context.commit("openNav");
     },
+
     closeNav: (context) => {
       context.commit("closeNav");
     },
@@ -58,13 +81,16 @@ export default new Vuex.Store({
     closeCart: (context) => {
       context.commit("closeCart");
     },
+
     addToCart: (context, payload) => {
       context.commit('addToCart', payload);
     },
+
     async getProducts(context) {
       const data = await API.fetchProducts();
       context.commit('setProducts', data);
     },
+
     getCurrentUser: (context, user) => {
       context.commit('setCurrentUser', user);
     }
