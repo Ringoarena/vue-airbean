@@ -49,11 +49,10 @@ export default new Vuex.Store({
       });
       if (productInCart) {
         productInCart.quantity += payload.quantity;
-        console.log('item was in cart, returning');
-        return
+      } else {
+        state.cart.push(payload);
       }
-      console.log('item was not in cart, pushing')
-      state.cart.push(payload);
+      
     },
 
     setCurrentUser: (state, user) => {
