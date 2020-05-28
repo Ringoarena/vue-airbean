@@ -13,7 +13,8 @@ export default new Vuex.Store({
       {id: 3, title: 'Espresso', description: 'Coffee without milk', price: '55'}
     ],
     cart: [],
-    orderNumber: '#OAR003B'
+    orderNumber: '#OAR003B',
+    user: null,
   },
   mutations: {
     openNav: (state) => {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     addToCart: (state, payload) => {
       state.cart.push(payload);
+    },
+    setCurrentUser: (state, user) =>{
+      state.user = user;
     }
   },
   actions: {
@@ -42,6 +46,9 @@ export default new Vuex.Store({
     async getProducts(context) {
       const data = await API.fetchProducts();
       context.commit('setProducts', data);
+    },
+    getCurrentUser: (context, user) =>{
+      context.commit('setCurrentUser', user);
     }
   },
   modules: {
