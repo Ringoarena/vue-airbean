@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <TheHeader v-if="currentPath != '/' && currentPath != '/status'" />
+    <CartModal />
     <TheNavigation />
     <router-view/>
     <TheFooter v-if="currentPath != '/' && currentPath != '/status'" />
@@ -10,13 +11,15 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue"
 import TheNavigation from "@/components/TheNavigation.vue"
+import CartModal from "@/components/CartModal.vue"
 import TheFooter from "@/components/TheFooter.vue"
 
 export default {
   components:{
     TheHeader,
     TheFooter,
-    TheNavigation
+    TheNavigation,
+    CartModal
   },
   computed:{
     currentPath(){
