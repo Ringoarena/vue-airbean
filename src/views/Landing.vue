@@ -1,80 +1,54 @@
 <template>
   <div class="home" @click="clickHandler">
-
     <div class="landing-wrapper">
-
       <section class="graphics">
-
-        <div class="left"></div>
-        <div class="logo"></div>
-        <div class="right"></div>
-
+        <div class="left">
+          <img src="../assets/graphics/intro-graphic-left.svg" alt />
+        </div>
+        <div class="logo">
+        <img src="../assets/graphics/airbean-landing.svg" alt />
+        </div>
+        <div class="right">
+          <img src="../assets/graphics/intro-graphic-left.svg" alt />
+        </div>
       </section>
-
-      <!-- <div class="logo"></div> -->
-
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 
 export default {
   name: "Home",
   components: {},
-  methods:{
-    clickHandler(){
-      this.$store.dispatch("openNav");
+  methods: {
+    clickHandler() {
+       this.$store.dispatch("openNav");
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .home {
-  height: 100vw;
-  background: #38846d;
-}
+  background-color: #38846d;
 
-.landing-wrapper {
-  display: flex;
-    flex-direction: column;
+  .landing-wrapper {
 
-
-  .graphics {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // display: grid;
-    // grid-template-columns: repeat(auto);
-    // grid-template-areas: "left logo right";
-
-    .left {
-      grid-area: left;
-      background: url("../assets/graphics/intro-graphic-left.svg");
+    .graphics {
+      display: grid;
+      grid-template-columns: 50px auto 50px;
+      .right {
+        transform: rotate(180deg);
+      }
+      .logo{
+        position: relative;
+        right: 0.8em;
+        bottom: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
-    .right {
-      grid-area: right;
-      // margin-left: 10em;
-      background-position: right;
-      background: url("../assets/graphics/intro-graphic-left.svg");
-      // transform: scaleX(-1);
-      transform: rotate(180deg);
-    }
-
-    .left,
-    .right {
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100vw;
-    }
-  }
-
-  .logo {
-    grid-area: logo;
-    padding: 6em;
-    width: 100%;
-    background: url("../assets/graphics/airbean-landing.svg") no-repeat;
   }
 }
 </style>
