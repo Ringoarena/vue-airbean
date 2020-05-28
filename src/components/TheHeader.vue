@@ -9,7 +9,7 @@
         <img src="../assets/graphics/navicon.svg" alt />
       </section>
 
-      <div v-if="getNumberOfItemsFromShoppingCart && bagIsVisible" class="bag">
+      <div v-if="bagIsVisible" class="bag">
         <section @click="clickHandlerBag" class="bagbtn">
           <img src="../assets/graphics/bag.svg" alt />
         </section>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -30,10 +31,11 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['getCartLength']),
     getNumberOfItemsFromShoppingCart() {
       // if
       // TODO: Connect this with vuex state
-      return 1;
+      return this.getCartLength;
     }
   },
   props: {},
