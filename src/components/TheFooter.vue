@@ -12,6 +12,7 @@ export default {};
 
 <style lang="scss" scoped>
 main {
+  padding-top: 2em;
   background-color: #f3e4e1;
 
   .graphics{

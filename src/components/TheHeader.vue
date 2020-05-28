@@ -53,6 +53,7 @@ main {
   background-color: #f3e4e1;
   display: grid;
   grid-template-rows: 4em 1em;
+  padding-bottom: 2em;
 
   .graphics {
     img {
