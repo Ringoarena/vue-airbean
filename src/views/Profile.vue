@@ -1,5 +1,6 @@
 <template>
   <main class="profile">
+    <RegisterProfile v-if="!computedUser" />
     <figure>
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
       <h3>Förnamn Efternamn</h3>
@@ -19,9 +20,12 @@
 
 <script>
 import OrderHistory from "@/components/OrderHistory.vue";
+import RegisterProfile from "@/components/RegisterProfile.vue";
+
 export default {
   components: {
-    OrderHistory
+    OrderHistory,
+    RegisterProfile
   },
   props: {},
 
