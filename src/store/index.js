@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     menuIsOpen: false,
+    cartIsOpen: false,
     products: [
       { id: 1, title: 'Cappucino', description: 'Coffee with foamed milk', price: '55' },
       { id: 2, title: 'Latte', description: 'Coffee with milk', price: '55' },
@@ -38,6 +39,12 @@ export default new Vuex.Store({
     closeNav: (state) => {
       state.menuIsOpen = false;
     },
+    openCart: (state) => {
+      state.cartIsOpen = true;
+    },
+    closeCart: (state) => {
+      state.cartIsOpen = false;
+    },
 
     setProducts: (state, payload) => {
       state.products = payload;
@@ -67,6 +74,12 @@ export default new Vuex.Store({
 
     closeNav: (context) => {
       context.commit("closeNav");
+    },
+    openCart: (context) => {
+      context.commit("openCart");
+    },
+    closeCart: (context) => {
+      context.commit("closeCart");
     },
 
     addToCart: (context, payload) => {

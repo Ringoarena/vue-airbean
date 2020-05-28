@@ -44,7 +44,7 @@ export default {
       this.$store.dispatch("openNav");
     },
     clickHandlerBag() {
-      console.log("Hello bag");
+      this.$store.dispatch("openCart");
     }
   }
 };
