@@ -1,6 +1,8 @@
 <template>
   <main>
-    <section class="background"></section>
+    <section class="graphics">
+      <img src="../assets/graphics/graphics-footer.svg" alt="">
+    </section>
   </main>
 </template>
 
@@ -11,30 +13,12 @@ export default {};
 <style lang="scss" scoped>
 main {
   background-color: #f3e4e1;
-  //   display: flex;
-  //   justify-content: flex-start;
-  //   align-items: center;
-}
 
-// .background {
-//   height: 8em;
-//   background-image: url("../assets/graphics/graphics-footer.svg");
-
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-attachment: initial;
-//   margin: 2em;
-// }
-.background {
-  height: 8em;
-  background-image: url("../assets/graphics/graphics-footer.svg");
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-repeat: no-repeat;
-
-  /* fix this shit in the future...  */
-  background-size: cover;
-  background-attachment: initial;
+  .graphics{
+    img{
+      width:100%;
+      
+    }
+  }
 }
 </style>
