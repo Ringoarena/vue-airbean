@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         addToCart() {
-            this.$store.dispatch('addToCard', this.CartItem);
+            this.$store.dispatch('addToCart', this.CartItem);
         },
         removeFromCart() {
             this.$store.dispatch('removeFromCart', this.CartItem);
