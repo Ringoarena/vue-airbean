@@ -11,7 +11,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props: ["user"],
+
+    methods: {
+        getUser(){
+        },
+    },
+};
+
 </script>
 
 <style lang="scss" scoped>
