@@ -51,7 +51,7 @@ figure {
     margin-bottom: 1.2rem;
   }
 
-  p{
+  p {
     font-family: "Work Sans", sans-serif;
   }
 }
@@ -61,8 +61,8 @@ figure {
   padding: 1.2rem;
 }
 
-figure{
-  img{
+figure {
+  img {
     border-radius: 50%;
   }
 }
