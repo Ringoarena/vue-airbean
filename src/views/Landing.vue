@@ -41,9 +41,6 @@ export default {
         transform: rotate(180deg);
       }
       .logo{
-        position: relative;
-        right: 0.8em;
-        bottom: 2em;
         display: flex;
         justify-content: center;
         align-items: center;
