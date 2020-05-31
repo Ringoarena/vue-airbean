@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     clickHandler() {
-      this.$store.dispatch("openNav");
+      // this.$store.dispatch("openNav");
+      this.$router.push({name: 'About'})
     },
     eta() {
       return Math.floor(Math.random() * 60);

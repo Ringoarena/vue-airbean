@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         addToCart() {
-            this.$store.dispatch('addToCart', {product: this.product, quantity: 1});
+            this.$store.dispatch('addToCart', {product: this.product});
         }
     }
 }
@@ -26,6 +26,7 @@ export default {
 article {
     display: flex;
     justify-content: space-between;
+    margin-top: 2rem;
 
     .add {
         display: flex;

@@ -55,20 +55,23 @@ export default new Vuex.Store({
         return item.product.id === payload.product.id;
       });
       if (productInCart) {
-        productInCart.quantity += payload.quantity;
+        productInCart.quantity += 1;
       } else {
+        payload.quantity = 1;
         state.cart.push(payload);
       }
-
     },
 
     reduceQuantity: (state, cartItem) => {
       cartItem.quantity -= 1;
       if (cartItem.quantity === 0) {
         state.cart = state.cart.filter(item => {
-          item.product.id != cartItem.product.id;
+          return item.product.id != cartItem.product.id;
         })
       }
+    },
+    clearCart: (state) => {
+      state.cart = []
     },
 
     setCurrentUser: (state, user) => {
@@ -97,6 +100,10 @@ export default new Vuex.Store({
 
     reduceQuantity: (context, payload) => {
       context.commit('reduceQuantity', payload)
+    },
+
+    clearCart: (context) => {
+      context.commit('clearCart')
     },
 
     async getProducts(context) {

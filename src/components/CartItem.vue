@@ -33,15 +33,21 @@ article {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1rem;
 
     .text {
         .title {
-            font-size: 2rem;
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+        .price {
+            font-size: 1rem;
         }
     }
 
     .quantityController {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        font-weight: bold;
         .controller {
             cursor: pointer;
         }

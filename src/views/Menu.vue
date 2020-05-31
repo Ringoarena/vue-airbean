@@ -4,9 +4,7 @@
     <section>
         <Product :key="product.id" v-for="product in products" :product="product" />
     </section>
-    
 </main>
-  
 </template>
 
 <script>
@@ -37,6 +35,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     section {
         width: 90%;
     }
