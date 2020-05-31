@@ -1,13 +1,13 @@
 <template>
   <nav :class="{openClass: menuIsOpen}">
       <div @click="closeNav" class="close"><img src="../assets/graphics/close.svg" alt=""></div>
-      <p @click="navigate('Menu')">Meny!</p>
+      <p @click="navigate('Menu')">Meny</p>
       <hr>
-      <p @click="navigate('About')">Vårt kaffe!</p>
+      <p @click="navigate('About')">Vårt kaffe</p>
       <hr>
-      <p @click="navigate('Profile')">Min profil!</p>
+      <p @click="navigate('Profile')">Min profil</p>
       <hr>
-      <p @click="navigate('Status')">Orderstatus!</p>
+      <p @click="navigate('Status')">Orderstatus</p>
       <hr>
   </nav>
 </template>
@@ -58,7 +58,6 @@ nav {
 
     p:hover {
         cursor: pointer;
-        font-size: 3rem;
     }
 
     hr {
