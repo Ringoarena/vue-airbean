@@ -39,7 +39,7 @@ nav {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: black;
+    background-color:#2f2926;
     overflow-x: hidden;
     transition: 0.5s;
     display: flex;

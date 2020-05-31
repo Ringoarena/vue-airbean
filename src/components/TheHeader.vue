@@ -15,7 +15,6 @@
         </section>
         <div class="displayNumberOfItems">
           <p v-text="getNumberOfItemsFromShoppingCart"></p>
-          <!-- <p :displayItems="displayItems">7</p> -->
         </div>
       </div>
     </nav>
@@ -33,8 +32,6 @@ export default {
   computed: {
     ...mapGetters(['getCartLength']),
     getNumberOfItemsFromShoppingCart() {
-      // if
-      // TODO: Connect this with vuex state
       return this.getCartLength;
     }
   },
@@ -52,7 +49,6 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  background-color: #f3e4e1;
   display: grid;
   grid-template-rows: 4em 1em;
   padding-bottom: 2em;
@@ -84,8 +80,6 @@ main {
 
     .bag {
       .bagbtn {
-        // position: relative;
-        // top: 0.5em;
         background: black;
         margin-top: 1.6em;
         margin-right:2.6em;

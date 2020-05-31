@@ -30,6 +30,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
+  
   background-color: #38846d;
 
   .landing-wrapper {

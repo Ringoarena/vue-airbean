@@ -34,7 +34,7 @@ article {
         align-items: center;
         padding: 1rem;
         clip-path: circle();
-        background-color: black;
+        background-color: #2f2926;
         img {
             width: 1rem;
         }
