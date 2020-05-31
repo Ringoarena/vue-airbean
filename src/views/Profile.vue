@@ -53,7 +53,6 @@ figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   h3 {
     font-family: "PT Serif", serif;
     margin-bottom: 1.2rem;

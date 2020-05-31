@@ -49,6 +49,9 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+
+  /* new shit added by chris */
+  min-height: 700px;
 }
 
 img,
