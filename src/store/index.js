@@ -59,7 +59,16 @@ export default new Vuex.Store({
       } else {
         state.cart.push(payload);
       }
-      
+
+    },
+
+    reduceQuantity: (state, cartItem) => {
+      cartItem.quantity -= 1;
+      if (cartItem.quantity === 0) {
+        state.cart = state.cart.filter(item => {
+          item.product.id != cartItem.product.id;
+        })
+      }
     },
 
     setCurrentUser: (state, user) => {
@@ -84,6 +93,10 @@ export default new Vuex.Store({
 
     addToCart: (context, payload) => {
       context.commit('addToCart', payload);
+    },
+
+    reduceQuantity: (context, payload) => {
+      context.commit('reduceQuantity', payload)
     },
 
     async getProducts(context) {
