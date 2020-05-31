@@ -1,29 +1,45 @@
+
 <template>
   <main class="modal" v-if="cartIsOpen">
     <div class="graphic"></div>
     <article class="modal-content">
-      <header class="top">
-        <h1>Din beställning</h1>
-      </header>
-      <main class="list-content"></main>
+      <h1>Din beställning</h1>
+      <section class="list-items">
+        <CartItem 
+          v-for="cartItem in cart"
+          :key="cartItem.product.id"
+          :cartItem="cartItem" />
+      </section>
       <footer class="bottom">
+        <p>{{cartTotalPrice}}</p>
         <button @click="closeCart" class="takemoneybtn">Take my money!</button>
       </footer>
     </article>
   </main>
 </template>
 <script>
+import CartItem from "@/components/CartItem";
 export default {
+  components: {
+    CartItem
+  },
   name: "CartModal",
   props: {},
   computed: {
     cartIsOpen() {
       return this.$store.state.cartIsOpen;
+    },
+    cart() {
+      return this.$store.state.cart;
+    },
+    cartTotalPrice() {
+      return this.$store.getters.getCartTotalPrice;
     }
   },
   methods: {
     closeCart() {
       this.$store.dispatch("closeCart");
+      this.$router.push({name: 'Status'})
     }
   }
 };

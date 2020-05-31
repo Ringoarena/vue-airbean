@@ -19,10 +19,10 @@ export default {
     },
     methods: {
         addToCart() {
-            this.$store.dispatch('addToCart', this.CartItem);
+            this.$store.dispatch('addToCart', this.cartItem);
         },
         removeFromCart() {
-            this.$store.dispatch('removeFromCart', this.CartItem);
+            this.$store.dispatch('reduceQuantity', this.cartItem);
         }
     }
 }
