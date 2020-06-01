@@ -53,17 +53,15 @@ export default {
       user: {
         name: "",
         email: "",
-        consent: false
+        consent: false,
+        orders: []
       }
     };
   },
 
-  computed: {},
-
   methods: {
     submitUser() {
       this.$store.dispatch("createUser", this.user);
-      
     }
   }
 };
