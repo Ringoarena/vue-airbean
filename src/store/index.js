@@ -24,13 +24,13 @@ export default new Vuex.Store({
       });
       return total;
     },
-    userOrdersTotalSum: (state) => {
-      let total = 0;
-      state.user.orders.forEach(order => {
-        total += order.totalSum;
-      });
-      return total;
-    }
+    // userOrdersTotalSum: (state) => {
+    //   let total = 0;
+    //   state.user.orders.forEach(order => {
+    //     total += order.totalSum;
+    //   });
+    //   return total;
+    // }
   },
 
   mutations: {

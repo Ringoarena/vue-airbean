@@ -7,6 +7,7 @@ async function fetchProducts() {
 async function postUser(user) {
   console.log("Entering post method")
   const response = await fetch('http://localhost:8080/users', {
+    
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

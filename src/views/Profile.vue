@@ -38,7 +38,6 @@ export default {
   },
 
   updated: {
-    computedUser() {}
   },
 
   methods: {
