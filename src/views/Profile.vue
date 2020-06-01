@@ -5,6 +5,7 @@
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
       <h3>{{computedUser.name}}</h3>
       <p>{{computedUser.email}}</p>
+      <p>User id: {{computedUser.id}}</p>
     </figure>
     <div class="orderHistory" v-if="computedUser">
       <h3>Orderhistorik</h3>
@@ -28,10 +29,20 @@ export default {
     RegisterProfile
   },
 
+  data() {
+    return {
+      newUser: {}
+    };
+  },
+
   computed: {
     computedUser() {
       return this.$store.state.user;
     }
+  },
+
+  updated: {
+    computedUser() {}
   },
 
   methods: {

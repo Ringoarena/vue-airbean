@@ -13,12 +13,17 @@
               >Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</slot>
             </div>
             <div class="modal-footer">
-              <form>
+              <div>
                 <label for="name">Namn</label>
                 <input type="text" id="name" v-model="user.name" placeholder="Förnamn Efternamn" />
 
                 <label for="email">E-post</label>
-                <input type="text" v-model="user.email" placeholder="e-post@snabelapunkt.com" id="email" />
+                <input
+                  type="text"
+                  v-model="user.email"
+                  placeholder="e-post@snabelapunkt.com"
+                  id="email"
+                />
 
                 <span>
                   <input
@@ -32,7 +37,7 @@
                 </span>
 
                 <button class="modal-default-button" @click="submitUser()">Brew me a cup</button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -58,6 +63,7 @@ export default {
   methods: {
     submitUser() {
       this.$store.dispatch("createUser", this.user);
+      
     }
   }
 };
@@ -116,7 +122,7 @@ export default {
   float: right;
 }
 .modal-footer {
-  form {
+  div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
