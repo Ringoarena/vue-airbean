@@ -3,7 +3,7 @@
     <RegisterProfile v-if="!computedUser" />
     <figure>
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
-      <h3>Förnamn Efternamn</h3>
+      <h3>{{computedUser}}</h3>
       <p>epost@example.com</p>
     </figure>
     <div class="orderHistory">
@@ -27,7 +27,6 @@ export default {
     OrderHistory,
     RegisterProfile
   },
-  props: {},
 
   computed: {
     computedUser() {
