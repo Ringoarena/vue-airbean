@@ -63,7 +63,6 @@ export default {
   methods: {
     submitUser() {
       this.$store.dispatch("createUser", this.user);
-      
     }
   }
 };
