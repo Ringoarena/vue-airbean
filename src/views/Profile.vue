@@ -1,12 +1,12 @@
 <template>
   <main class="profile">
     <RegisterProfile v-if="!computedUser" />
-    <figure>
+    <figure v-if="computedUser">
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
       <h3>{{computedUser}}</h3>
       <p>epost@example.com</p>
     </figure>
-    <div class="orderHistory">
+    <div class="orderHistory" v-if="computedUser">
       <h3>Orderhistorik</h3>
       <OrderHistory />
       <OrderHistory />

@@ -65,7 +65,7 @@ export default {
         Consent: this.Consent
       };
       this.$store.dispatch("getCurrentUser", this.User);
-    },
+    }
   }
 };
 </script>
