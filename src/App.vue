@@ -1,32 +1,56 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <TheHeader
+      v-if="currentPath != '/' && currentPath != '/status'"
+      :style="{background: 
+      [currentPath == '/about' || currentPath == '/menu' 
+      ? '#f3e4e1' : '#2f2926']}"
+    />
+    <CartModal />
+    <TheNavigation />
+    <router-view />
+    <TheFooter
+      v-if="currentPath != '/' && currentPath != '/status'"
+      :style="{background: 
+      [currentPath == '/about' || currentPath == '/menu' 
+      ? '#f3e4e1'  : '#2f2926']}"
+    />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import TheHeader from "@/components/TheHeader.vue";
+import TheNavigation from "@/components/TheNavigation.vue";
+import CartModal from "@/components/CartModal.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  components: {
+    TheHeader,
+    TheFooter,
+    TheNavigation,
+    CartModal
+  },
+  computed: {
+    currentPath() {
+      return this.$route.path;
     }
   }
+};
+</script>
+
+<style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+/* shit added by chris */
+#app {
+  margin: 0 auto;
+  max-width: 500px;
+  min-height: 700px;
 }
 </style>
