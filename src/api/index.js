@@ -36,15 +36,27 @@
 //       "price":39
 //     }
 //   ]
-  // function fetchProducts() {
-  //     return new Promise((resolve) => {
-  //       setTimeout(() => resolve(products),500)
-  //     });
-  // }
-  async function fetchProducts() {
-      const response = await fetch('http://localhost:8080/products');
-      const data = await response.json();
-      return data._embedded.products;
-  }
+// function fetchProducts() {
+//     return new Promise((resolve) => {
+//       setTimeout(() => resolve(products),500)
+//     });
+// }
+async function fetchProducts() {
+  const response = await fetch('http://localhost:8080/products');
+  const data = await response.json();
+  return data._embedded.products;
+}
 
-  export {fetchProducts}
+async function postUser(user) {
+  console.log("Entering post method")
+  const response = await fetch('http://localhost:8080/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  });
+  return response.json();
+}
+
+export { fetchProducts, postUser }

@@ -74,7 +74,7 @@ export default new Vuex.Store({
       state.cart = []
     },
 
-    setCurrentUser: (state, user) => {
+    createUser: (state, user) => {
       state.user = user;
     }
   },
@@ -111,8 +111,11 @@ export default new Vuex.Store({
       context.commit('setProducts', data);
     },
 
-    getCurrentUser: (context, user) => {
-      context.commit('setCurrentUser', user);
+    async createUser(context, user) {
+      const createdUser = await API.postUser(user)
+      console.log(createdUser)
+      context.commit('createUser', createdUser);
+
     }
   },
   modules: {

@@ -3,8 +3,8 @@
     <RegisterProfile v-if="!computedUser" />
     <figure v-if="computedUser">
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
-      <h3>{{computedUser}}</h3>
-      <p>epost@example.com</p>
+      <h3>{{computedUser.name}}</h3>
+      <p>{{computedUser.email}}</p>
     </figure>
     <div class="orderHistory" v-if="computedUser">
       <h3>Orderhistorik</h3>
