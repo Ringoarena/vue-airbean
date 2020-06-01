@@ -1,18 +1,18 @@
 <template>
-  <main class="profile">
+  <main>
     <RegisterProfile v-if="!computedUser" />
-    <figure>
+    <figure v-if="computedUser">
       <img src="@/assets/graphics/eva-cortado.jpg" alt="Profilbild" />
-      <h3>{{computedUser}}</h3>
-      <p>epost@example.com</p>
+      <h3>{{computedUser.name}}</h3>
+      <p>{{computedUser.email}}</p>
+      <p>User id: {{computedUser.id}}</p>
     </figure>
-    <div class="orderHistory">
+    <div class="orderHistory" v-if="computedUser">
       <h3>Orderhistorik</h3>
-      <OrderHistory />
-      <OrderHistory />
+      <OrderHistory v-for="order in computedUser.orders" :key="order.id" :order="order" />
       <p>
         Totalt spenderat:
-        <span>1331</span> kr
+        <span>{{userOrdersTotalSum}}</span> kr
       </p>
     </div>
   </main>
@@ -31,7 +31,13 @@ export default {
   computed: {
     computedUser() {
       return this.$store.state.user;
+    },
+    userOrdersTotalSum() {
+      return this.$store.getters.userOrdersTotalSum;
     }
+  },
+
+  updated: {
   },
 
   methods: {
@@ -44,7 +50,11 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-main.profile,
+main {
+  min-height: 400px;
+}
+
+main,
 figure {
   padding: 1.2rem;
   color: #fff;

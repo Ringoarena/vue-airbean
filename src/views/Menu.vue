@@ -37,6 +37,7 @@ main {
     align-items: center;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    min-height: 418px;
     section {
         width: 90%;
     }

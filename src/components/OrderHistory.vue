@@ -1,14 +1,18 @@
 <template>
   <main class="history">
-    <p class="number">#ABBA002</p>
-    <p class="orderdate">20/03/06</p>
+    <p class="number">{{order.number}}</p>
+    <p class="orderdate">{{order.date}}</p>
     <p class="desc">total ordersumma</p>
-    <p class="orderSum">893 kr</p>
+    <p class="orderSum">{{order.totalSum}} kr</p>
   </main>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    order: Object
+  }
+};
 </script>
 
 <style lang="scss" scoped>

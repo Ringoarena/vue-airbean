@@ -8,13 +8,8 @@ export default new Vuex.Store({
   state: {
     menuIsOpen: false,
     cartIsOpen: false,
-    products: [
-      { id: 1, title: 'Cappucino', description: 'Coffee with foamed milk', price: '55' },
-      { id: 2, title: 'Latte', description: 'Coffee with milk', price: '55' },
-      { id: 3, title: 'Espresso', description: 'Coffee without milk', price: '55' }
-    ],
+    products: [],
     cart: [],
-    orderNumber: '#OAR003B',
     user: null,
   },
 
@@ -28,7 +23,14 @@ export default new Vuex.Store({
         total += item.product.price * item.quantity;
       });
       return total;
-    }
+    },
+    // userOrdersTotalSum: (state) => {
+    //   let total = 0;
+    //   state.user.orders.forEach(order => {
+    //     total += order.totalSum;
+    //   });
+    //   return total;
+    // }
   },
 
   mutations: {
@@ -74,8 +76,8 @@ export default new Vuex.Store({
       state.cart = []
     },
 
-    setCurrentUser: (state, user) => {
-      state.user = user;
+    createUser: (state, payloadUser) => {
+      state.user = payloadUser;
     }
   },
 
@@ -111,8 +113,14 @@ export default new Vuex.Store({
       context.commit('setProducts', data);
     },
 
-    getCurrentUser: (context, user) => {
-      context.commit('setCurrentUser', user);
+    async createUser(context, user) {
+      const createdUser = await API.postUser(user)
+      context.commit('createUser', createdUser);
+    },
+
+    async addOrder(context, user) {
+      const updatedUser = await API.updateUser(user);
+      context.commit('createUser', updatedUser);
     }
   },
   modules: {

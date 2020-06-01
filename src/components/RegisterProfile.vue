@@ -13,26 +13,31 @@
               >Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</slot>
             </div>
             <div class="modal-footer">
-              <form>
+              <div>
                 <label for="name">Namn</label>
-                <input type="text" id="name" v-model="Name" placeholder="Förnamn Efternamn" />
+                <input type="text" id="name" v-model="user.name" placeholder="Förnamn Efternamn" />
 
                 <label for="email">E-post</label>
-                <input type="text" v-model="Email" placeholder="e-post@snabelapunkt.com" id="email" />
+                <input
+                  type="text"
+                  v-model="user.email"
+                  placeholder="e-post@snabelapunkt.com"
+                  id="email"
+                />
 
                 <span>
                   <input
                     class="consentgdpr"
                     type="radio"
                     id="consent"
-                    v-model="Consent"
+                    v-model="user.consent"
                     value="true"
                   />
                   <label class="consentgdpr" for="consent">GDPR OK</label>
                 </span>
 
-                <button class="modal-default-button" @click="submitUser">Brew me a cup</button>
-              </form>
+                <button class="modal-default-button" @click="submitUser()">Brew me a cup</button>
+              </div>
             </div>
           </div>
         </div>
@@ -43,29 +48,21 @@
 <script>
 export default {
   name: "RegisterModal",
-  props: {
-    User: Object
-  },
-
   data() {
     return {
-      Name: "",
-      Email: "",
-      Consent: false
+      user: {
+        name: "",
+        email: "",
+        consent: false,
+        orders: []
+      }
     };
   },
 
-  computed: {},
-
   methods: {
     submitUser() {
-      this.User = {
-        Name: this.Name,
-        Email: this.Email,
-        Consent: this.Consent
-      };
-      this.$store.dispatch("getCurrentUser", this.User);
-    },
+      this.$store.dispatch("createUser", this.user);
+    }
   }
 };
 </script>
@@ -123,7 +120,7 @@ export default {
   float: right;
 }
 .modal-footer {
-  form {
+  div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
