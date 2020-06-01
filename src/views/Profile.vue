@@ -70,6 +70,7 @@ figure {
   background-color: #2f2926;
   padding: 1.2rem;
   margin-bottom: 1.2rem;
+  width: 100%;
 }
 
 figure {

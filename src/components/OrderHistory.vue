@@ -20,7 +20,6 @@ p {
 .history {
   transition: background-color 0.7s;
   margin-bottom: 1.2rem;
-  width: 70vw;
   display: grid;
   grid-template-areas:
     "a . b"
