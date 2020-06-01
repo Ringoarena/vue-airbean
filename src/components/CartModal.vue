@@ -44,14 +44,15 @@ export default {
   },
   methods: {
     submitOrder() {
-      let currentUser = this.$store.state.user;
-      if (currentUser) {
-        console.log('user logged in');
-        currentUser.orders.push(this.cart);
-        this.$store.dispatch('addOrder', currentUser);
-      }
-      this.$store.dispatch('closeCart');
-      this.$store.dispatch('clearCart');
+      // let currentUser = this.$store.state.user;
+      // if (currentUser) {
+      //   console.log('user logged in');
+      //   currentUser.orders.push(this.cart);
+      //   this.$store.dispatch('addOrder', currentUser);
+      // }
+      // this.$store.dispatch('closeCart');
+      // this.$store.dispatch('clearCart');
+      this.$store.dispatch('submitOrder');
       this.$router.push({name: 'Status'});
     },
     closeModal() {

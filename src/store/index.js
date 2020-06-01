@@ -76,8 +76,8 @@ export default new Vuex.Store({
       state.cart = []
     },
 
-    createUser: (state, payloadUser) => {
-      state.user = payloadUser;
+    setUser: (state, payload) => {
+      state.user = payload;
     }
   },
 
@@ -114,14 +114,23 @@ export default new Vuex.Store({
     },
 
     async createUser(context, user) {
-      const createdUser = await API.postUser(user)
-      context.commit('createUser', createdUser);
+      const createdUser = await API.createUser(user)
+      context.commit('setUser', createdUser);
     },
 
-    async addOrder(context, user) {
-      const updatedUser = await API.updateUser(user);
-      context.commit('createUser', updatedUser);
-    }
+    async submitOrder(context) {
+      const createdOrder = await API.createOrder({"orderTotalSum": context.getters.getCartTotalPrice});
+      const createdOrderLines = [];
+      context.state.cart.forEach(cartItem => async function(){
+        let createdOrderLine = await API.createOrdLine(cartItem);
+        createdOrderLine = await API.updateOrderLine({orderLine: createdOrder, product: cartItem.product});
+        createdOrderLines.push(createdOrderLine);
+      });
+      createdOrderLines.forEach(orderLine => async function() {
+        await API.updateOrder({order: createdOrder, orderLine: orderLine});
+      });
+      // todo fortsätt här imorrn
+    },
   },
   modules: {
   }
