@@ -29,7 +29,7 @@ export default new Vuex.Store({
       let total = 0;
       if (state.userOrders) {
         state.userOrders.forEach(order => {
-          total += order.orderTotalSum.totalSum;
+          total += order.orderTotalSum;
         });
       }
       return total;
@@ -127,17 +127,16 @@ export default new Vuex.Store({
 
     async submitOrder(context) {
       const createdOrder = await API.createOrder({"orderTotalSum": context.getters.getCartTotalPrice});
-      console.log('created order: ' + createdOrder);
       if (context.state.user) {
-        let updatedUser = await API.updateUser({user: context.state.user, order: createdOrder });
-        console.log('Updated user:');
-        console.log(updatedUser);
+        await API.updateUser({user: context.state.user, order: createdOrder });
       }
     },
 
     async getUserOrders(context) {
       if (context.state.user) {
         let userOrders = await API.fetchUserOrders(context.state.user);
+        console.log('fetched user orders:');
+        console.log(userOrders);
         context.commit('setUserOrders', userOrders);
       }
     }

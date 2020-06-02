@@ -8,11 +8,11 @@
       <p>User id: {{computedUser.id}}</p>
     </figure>
     <div class="orderHistory" v-if="computedUser">
-      <h3>Orderhistorik</h3>
+      <h3 @click="refresh()">Orderhistorik</h3>
       <OrderHistory v-for="order in computedUser.orders" :key="order.id" :order="order" />
       <p>
         Totalt spenderat:
-        <span></span> kr
+        <span>{{userOrdersTotalSum}}</span> kr
       </p>
     </div>
   </main>
@@ -27,7 +27,6 @@ export default {
     OrderHistory,
     RegisterProfile
   },
-
   computed: {
     computedUser() {
       return this.$store.state.user;
@@ -36,15 +35,10 @@ export default {
       return this.$store.getters.userOrdersTotalSum;
     }
   },
-
-  updated: {
-    computedUser() {}
-  },
-
   methods: {
-    getUser() {}
-  },
-  mounted() {
+    refresh() {
+      this.$store.dispatch('getUserOrders');
+    }
   }
 };
 </script>
