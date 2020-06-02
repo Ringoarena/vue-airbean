@@ -35,13 +35,6 @@ export default {
       return this.$store.getters.userOrdersTotalSum;
     }
   },
-<<<<<<< HEAD
-
-  updated: {
-  },
-
-=======
->>>>>>> d0bb48fb7b5899f16aabe3d42a6f8145766b29a5
   methods: {
     refresh() {
       this.$store.dispatch('getUserOrders');
