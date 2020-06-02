@@ -12,7 +12,7 @@
       <OrderHistory v-for="order in computedUser.orders" :key="order.id" :order="order" />
       <p>
         Totalt spenderat:
-        <span>todo in Profile.vue</span> kr
+        <span></span> kr
       </p>
     </div>
   </main>
@@ -43,6 +43,8 @@ export default {
 
   methods: {
     getUser() {}
+  },
+  mounted() {
   }
 };
 </script>

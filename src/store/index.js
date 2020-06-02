@@ -11,6 +11,7 @@ export default new Vuex.Store({
     products: [],
     cart: [],
     user: null,
+    userOrders: []
   },
 
   getters: {
@@ -26,9 +27,11 @@ export default new Vuex.Store({
     },
     userOrdersTotalSum: (state) => {
       let total = 0;
-      state.user.orders.forEach(order => {
-        total += order.totalSum;
-      });
+      if (state.userOrders) {
+        state.userOrders.forEach(order => {
+          total += order.orderTotalSum.totalSum;
+        });
+      }
       return total;
     }
   },
@@ -78,6 +81,10 @@ export default new Vuex.Store({
 
     setUser: (state, payload) => {
       state.user = payload;
+    },
+
+    setUserOrders: (state, orders) => {
+      state.userOrders = orders;
     }
   },
 
@@ -120,17 +127,20 @@ export default new Vuex.Store({
 
     async submitOrder(context) {
       const createdOrder = await API.createOrder({"orderTotalSum": context.getters.getCartTotalPrice});
-      const createdOrderLines = [];
-      context.state.cart.forEach(cartItem => async function(){
-        let createdOrderLine = await API.createOrdLine(cartItem);
-        createdOrderLine = await API.updateOrderLine({orderLine: createdOrder, product: cartItem.product});
-        createdOrderLines.push(createdOrderLine);
-      });
-      createdOrderLines.forEach(orderLine => async function() {
-        await API.updateOrder({order: createdOrder, orderLine: orderLine});
-      });
-      // todo fortsätt här imorrn
+      console.log('created order: ' + createdOrder);
+      if (context.state.user) {
+        let updatedUser = await API.updateUser({user: context.state.user, order: createdOrder });
+        console.log('Updated user:');
+        console.log(updatedUser);
+      }
     },
+
+    async getUserOrders(context) {
+      if (context.state.user) {
+        let userOrders = await API.fetchUserOrders(context.state.user);
+        context.commit('setUserOrders', userOrders);
+      }
+    }
   },
   modules: {
   }

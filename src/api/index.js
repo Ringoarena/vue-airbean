@@ -10,35 +10,56 @@ async function createUser(user) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(user);
+    body: JSON.stringify(user)
   });
   return response.json();
 }
 
+async function updateUser(payload) {
+  console.log('entering updateUser method: ' + payload.user.name + ' order link: ' + payload.user._links.ords.href);
+  console.log('body uri: ' + payload.order._links.self.href);
+  const response = await fetch(payload.user._links.ords.href, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'text/uri-list'
+    },
+    body: payload.order._links.self.href
+  });
+  console.log('put user method completed');
+  return response;
+}
+
 async function createOrder(order) {
-  const reponse = await fetch('http://localhost:8080/ords', {
+  const response = await fetch('http://localhost:8080/ords', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(order)
   });
-  return response.json();
+  return response;
+}
+
+async function fetchUserOrders(user) {
+  console.log("fetchUserOrders method");
+  const response = await fetch(user._links.ords.href);
+  const data = await response.json();
+  return data._embedded.ords;
 }
 
 async function updateOrder(payload) {
-  const reponse = await fetch(payload.order._links.self.href, {
+  const response = await fetch(payload.order._links.self.href, {
     method: 'PUT',
     headers: {
       'Content-Type': 'text/uri-list'
     },
     body: payload.orderLine._link.self.href
   });
-  return response.json();
+  return response;
 }
 
 async function createOrderLine(cartItem) {
-  const reponse = await fetch('http://localhost:8080/ordLines', {
+  const response = await fetch('http://localhost:8080/ordLines', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -49,7 +70,7 @@ async function createOrderLine(cartItem) {
 }
 
 async function updateOrderLine(payload) {
-  const reponse = await fetch(payload.orderLine._links.product.href, {
+  const response = await fetch(payload.orderLine._links.product.href, {
     method: 'PUT',
     headers: {
       'Content-Type': 'text/uri-list'
@@ -59,17 +80,4 @@ async function updateOrderLine(payload) {
   return response.json();
 }
 
-async function updateUser(user) {
-  console.log('entering updateUser method');
-  const response = await fetch('http://localhost:8080/users', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  });
-  console.log('put user method completed');
-  return response.json();
-}
-
-export { fetchProducts, createUser, createOrder, createOrderLine, updateUser }
+export {fetchProducts, fetchUserOrders, createUser, createOrder, updateOrder, createOrderLine, updateOrderLine, updateUser }
