@@ -4,8 +4,7 @@ async function fetchProducts() {
   return data._embedded.products;
 }
 
-async function postUser(user) {
-  console.log("Entering post method")
+async function createUser(user) {
   const response = await fetch('http://localhost:8080/users', {
     
     method: 'POST',
@@ -14,21 +13,37 @@ async function postUser(user) {
     },
     body: JSON.stringify(user)
   });
-  console.log('post user method completed');
   return response.json();
 }
 
-async function updateUser(user) {
-  console.log('entering updateUser method');
-  const response = await fetch('http://localhost:8080/users', {
-    method: 'PUT',
+async function createOrder(order) {
+  const response = await fetch('http://localhost:8080/ords', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(user)
+    body: JSON.stringify(order)
   });
-  console.log('put user method completed');
   return response.json();
 }
 
-export { fetchProducts, postUser, updateUser}
+async function updateUser(payload) {
+  console.log('updateUser function. payload:');
+  console.log(payload);
+  const response = await fetch(payload.order._links.user.href, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'text/uri-list'
+    },
+    body: payload.user._links.self.href
+  });
+  return response;
+}
+
+async function fetchUserOrders(user) {
+  const response = await fetch(user._links.ords.href);
+  const data = await response.json();
+  return data._embedded.ords;
+}
+
+export {fetchProducts, createUser, createOrder, fetchUserOrders, updateUser }

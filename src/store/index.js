@@ -11,6 +11,7 @@ export default new Vuex.Store({
     products: [],
     cart: [],
     user: null,
+    userOrders: []
   },
 
   getters: {
@@ -24,13 +25,15 @@ export default new Vuex.Store({
       });
       return total;
     },
-    // userOrdersTotalSum: (state) => {
-    //   let total = 0;
-    //   state.user.orders.forEach(order => {
-    //     total += order.totalSum;
-    //   });
-    //   return total;
-    // }
+    userOrdersTotalSum: (state) => {
+      let total = 0;
+      if (state.userOrders) {
+        state.userOrders.forEach(order => {
+          total += order.orderTotalSum;
+        });
+      }
+      return total;
+    }
   },
 
   mutations: {
@@ -76,8 +79,12 @@ export default new Vuex.Store({
       state.cart = []
     },
 
-    createUser: (state, payloadUser) => {
-      state.user = payloadUser;
+    setUser: (state, payload) => {
+      state.user = payload;
+    },
+
+    setUserOrders: (state, orders) => {
+      state.userOrders = orders;
     }
   },
 
@@ -114,13 +121,24 @@ export default new Vuex.Store({
     },
 
     async createUser(context, user) {
-      const createdUser = await API.postUser(user)
-      context.commit('createUser', createdUser);
+      const createdUser = await API.createUser(user)
+      context.commit('setUser', createdUser);
     },
 
-    async addOrder(context, user) {
-      const updatedUser = await API.updateUser(user);
-      context.commit('createUser', updatedUser);
+    async submitOrder(context) {
+      const createdOrder = await API.createOrder({"orderTotalSum": context.getters.getCartTotalPrice});
+      if (context.state.user) {
+        await API.updateUser({user: context.state.user, order: createdOrder });
+      }
+    },
+
+    async getUserOrders(context) {
+      if (context.state.user) {
+        let userOrders = await API.fetchUserOrders(context.state.user);
+        console.log('fetched user orders:');
+        console.log(userOrders);
+        context.commit('setUserOrders', userOrders);
+      }
     }
   },
   modules: {
