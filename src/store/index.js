@@ -25,15 +25,6 @@ export default new Vuex.Store({
       });
       return total;
     },
-<<<<<<< HEAD
-    // userOrdersTotalSum: (state) => {
-    //   let total = 0;
-    //   state.user.orders.forEach(order => {
-    //     total += order.totalSum;
-    //   });
-    //   return total;
-    // }
-=======
     userOrdersTotalSum: (state) => {
       let total = 0;
       if (state.userOrders) {
@@ -43,7 +34,6 @@ export default new Vuex.Store({
       }
       return total;
     }
->>>>>>> d0bb48fb7b5899f16aabe3d42a6f8145766b29a5
   },
 
   mutations: {
